@@ -41,8 +41,6 @@ int main(void)
 
     pthread_join(thread_id[0], NULL);
     pthread_join(thread_id[1], NULL);
-
-    pthread_mutex_destroy(&mutex);
     
     return 0;
 }
