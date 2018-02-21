@@ -6,7 +6,7 @@
 #include <semaphore.h>
 
 #define MATES 5
-#define ROUNDMAX 1
+#define ROUNDMAX 3
 #define MILKMIN 3
 #define MILKMAX 7
 
@@ -24,6 +24,7 @@ int myRand(int start, int end)
 
 void drinkMilkAndBuyIfNeed(int id)
 {
+    // simulate time to drink
     sleep(1);
 
     // possibility = 0.2 to drink milk
@@ -109,7 +110,7 @@ int main()
     //     // printf("[MAIN]\t thread %d is completed!\n", i);
     // }
 
-    printf("\n[MAIN]\t ALL THREAD IS COMPLETED!\n");
+    printf("\n[MAIN]\t COMPLETELY BOUGHT MILK %d TIMES!\n", ROUNDMAX);
 
     // unlock
     pthread_mutex_unlock(&mutex);
