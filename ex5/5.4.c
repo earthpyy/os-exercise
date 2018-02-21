@@ -3,11 +3,17 @@
 #include <time.h>
 #include <pthread.h>
 #include <unistd.h>
-#include <semaphore.h>
 
+// roommates amount
 #define MATES 5
+
+// buying milk n times
 #define ROUNDMAX 3
+
+// min value to random milk amount
 #define MILKMIN 3
+
+// max value to random milk amount
 #define MILKMAX 7
 
 int milk;
@@ -35,7 +41,6 @@ void drinkMilkAndBuyIfNeed(int id)
         printf("[T%d]\t locked!\n", id);
 
         // drink milk
-        // sleep(1);
         milk--;
         printf("[T%d]\t drinking milk. (%d left)\n", id, milk);
 
@@ -44,7 +49,6 @@ void drinkMilkAndBuyIfNeed(int id)
         {
             printf("[T%d]\t milk is empty! buying some...\n", id);
             // go buy some milk (between MILKMIN to MILKMAX)
-            // sleep(1);
             milk += myRand(MILKMIN, MILKMAX);
             printf("[T%d]\t done! milk amount is %d.\n", id, milk);
 
@@ -59,7 +63,7 @@ void drinkMilkAndBuyIfNeed(int id)
     // not drink
     else
     {
-        printf("[T%d]\t not drink milk...\n", id);
+        // printf("[T%d]\t not drink milk...\n", id);
     }
 }
 
@@ -103,12 +107,6 @@ int main()
         pthread_cond_wait(&cond, &mutex);
         printf("[MAIN]\t received signal!\n");
     }
-
-    // for (i = 0; i < MATES; i++)
-    // {
-    //     pthread_join(thread[i], NULL);
-    //     // printf("[MAIN]\t thread %d is completed!\n", i);
-    // }
 
     printf("\n[MAIN]\t COMPLETELY BOUGHT MILK %d TIMES!\n", ROUNDMAX);
 
